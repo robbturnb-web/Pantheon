@@ -47,7 +47,7 @@ function AuthForm() {
           <div className="text-3xl mb-3">🔭</div>
           <h2
             className="text-2xl font-bold mb-2"
-            style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+            style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
           >
             Join the Observatory
           </h2>
@@ -66,7 +66,7 @@ function AuthForm() {
               style={{
                 background: mode === m ? 'rgba(201,168,76,0.15)' : 'transparent',
                 color: mode === m ? '#c9a84c' : 'rgba(255,255,255,0.4)',
-                fontFamily: 'Georgia, serif',
+                fontFamily: 'Cinzel, Georgia, serif',
               }}
             >
               {m === 'signin' ? 'Sign In' : 'Register'}
@@ -128,7 +128,7 @@ function AuthForm() {
             style={{
               background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
               color: '#030309',
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               opacity: loading ? 0.7 : 1,
             }}
           >
@@ -180,7 +180,7 @@ function SightingsFeed({ userId, user }: { userId: string; user: import('@supaba
         className="p-5 rounded space-y-3"
         style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
       >
-        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}>
+        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}>
           Report a Sighting
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -227,7 +227,7 @@ function SightingsFeed({ userId, user }: { userId: string; user: import('@supaba
             background: 'rgba(201,168,76,0.15)',
             border: '1px solid rgba(201,168,76,0.3)',
             color: '#c9a84c',
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'Cinzel, Georgia, serif',
           }}
         >
           <Send size={12} />
@@ -309,7 +309,7 @@ function SynchronicityJournal({ userId, user }: { userId: string; user: import('
         className="p-5 rounded space-y-3"
         style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(147,51,234,0.2)' }}
       >
-        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#c084fc', fontFamily: 'Georgia, serif' }}>
+        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#c084fc', fontFamily: 'Cinzel, Georgia, serif' }}>
           Share a Synchronicity
         </h3>
         <textarea
@@ -329,7 +329,7 @@ function SynchronicityJournal({ userId, user }: { userId: string; user: import('
             background: 'rgba(147,51,234,0.15)',
             border: '1px solid rgba(147,51,234,0.3)',
             color: '#c084fc',
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'Cinzel, Georgia, serif',
           }}
         >
           <Send size={12} />
@@ -400,7 +400,7 @@ function ResearchThreads({ userId, user }: { userId: string; user: import('@supa
         className="p-5 rounded space-y-3"
         style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(96,165,250,0.2)' }}
       >
-        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#60a5fa', fontFamily: 'Georgia, serif' }}>
+        <h3 className="text-sm tracking-wider uppercase" style={{ color: '#60a5fa', fontFamily: 'Cinzel, Georgia, serif' }}>
           Start a Research Thread
         </h3>
         <input
@@ -437,7 +437,7 @@ function ResearchThreads({ userId, user }: { userId: string; user: import('@supa
             background: 'rgba(96,165,250,0.1)',
             border: '1px solid rgba(96,165,250,0.3)',
             color: '#60a5fa',
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'Cinzel, Georgia, serif',
           }}
         >
           <Send size={12} />
@@ -454,7 +454,7 @@ function ResearchThreads({ userId, user }: { userId: string; user: import('@supa
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs" style={{ color: '#60a5fa' }}>{thread.profiles?.username ?? 'Anonymous'}</span>
           </div>
-          <h4 className="font-bold mb-2" style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}>
+          <h4 className="font-bold mb-2" style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}>
             {thread.title}
           </h4>
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
@@ -553,7 +553,7 @@ export default function CommunityPage() {
                       background: activeTab === tab ? 'rgba(201,168,76,0.12)' : 'rgba(255,255,255,0.04)',
                       border: activeTab === tab ? '1px solid rgba(201,168,76,0.4)' : '1px solid rgba(255,255,255,0.07)',
                       color: activeTab === tab ? '#c9a84c' : 'rgba(255,255,255,0.5)',
-                      fontFamily: 'Georgia, serif',
+                      fontFamily: 'Cinzel, Georgia, serif',
                     }}
                   >
                     {tab}

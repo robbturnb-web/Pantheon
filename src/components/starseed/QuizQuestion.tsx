@@ -40,7 +40,7 @@ export default function QuizQuestion({ question, questionNumber, totalQuestions,
       <h2
         className="text-2xl sm:text-3xl text-center mb-10 font-medium"
         style={{
-          fontFamily: 'Georgia, serif',
+          fontFamily: 'Cinzel, Georgia, serif',
           color: 'rgba(255,255,255,0.95)',
           lineHeight: 1.4,
           textShadow: '0 0 30px rgba(201,168,76,0.2)',
@@ -63,7 +63,7 @@ export default function QuizQuestion({ question, questionNumber, totalQuestions,
               background: 'rgba(255,255,255,0.04)',
               border: '1px solid rgba(201,168,76,0.15)',
               color: 'rgba(255,255,255,0.8)',
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
             }}
             whileHover={{
               background: 'rgba(201,168,76,0.1)',

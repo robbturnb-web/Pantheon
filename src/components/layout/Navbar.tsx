@@ -42,7 +42,7 @@ export default function Navbar() {
             />
             <span
               className="font-semibold tracking-widest text-sm uppercase hidden sm:block"
-              style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+              style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
             >
               Pantheon
             </span>
@@ -57,7 +57,7 @@ export default function Navbar() {
                 className="relative px-3 py-2 text-xs tracking-wider uppercase transition-colors"
                 style={{
                   color: isActive(link.path) ? '#f5c842' : 'rgba(255,255,255,0.65)',
-                  fontFamily: 'Georgia, serif',
+                  fontFamily: 'Cinzel, Georgia, serif',
                 }}
               >
                 {isActive(link.path) && (
@@ -106,7 +106,7 @@ export default function Navbar() {
                     color: isActive(link.path) ? '#f5c842' : 'rgba(255,255,255,0.7)',
                     background: isActive(link.path) ? 'rgba(201,168,76,0.08)' : 'transparent',
                     borderLeft: isActive(link.path) ? '2px solid #c9a84c' : '2px solid transparent',
-                    fontFamily: 'Georgia, serif',
+                    fontFamily: 'Cinzel, Georgia, serif',
                   }}
                 >
                   {link.label}

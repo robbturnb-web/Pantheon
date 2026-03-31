@@ -13,7 +13,7 @@ export default function Footer() {
             <Telescope size={18} style={{ color: '#c9a84c' }} />
             <span
               className="text-sm tracking-widest uppercase"
-              style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+              style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
             >
               Pantheon Observatory
             </span>

@@ -88,7 +88,7 @@ export default function SignalsPage() {
                 <div className="h-px flex-1" style={{ background: `${ratingConfig[rating].border}` }} />
                 <span
                   className="text-xs tracking-wider uppercase"
-                  style={{ color: ratingConfig[rating].text, fontFamily: 'Georgia, serif', flexShrink: 0 }}
+                  style={{ color: ratingConfig[rating].text, fontFamily: 'Cinzel, Georgia, serif', flexShrink: 0 }}
                 >
                   {label}
                 </span>
@@ -112,7 +112,7 @@ export default function SignalsPage() {
                       <div>
                         <h3
                           className="font-bold text-base"
-                          style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+                          style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
                         >
                           {creator.name}
                         </h3>
@@ -156,7 +156,7 @@ export default function SignalsPage() {
                         background: 'rgba(147,51,234,0.08)',
                         border: '1px solid rgba(147,51,234,0.25)',
                         color: '#c084fc',
-                        fontFamily: 'Georgia, serif',
+                        fontFamily: 'Cinzel, Georgia, serif',
                       }}
                     >
                       Ask Echo About {creator.name.split(' ')[0]}

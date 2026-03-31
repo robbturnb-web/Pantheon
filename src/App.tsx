@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import StarfieldCanvas from './components/layout/StarfieldCanvas';
+import CosmicCursor from './components/layout/CosmicCursor';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import EchoAI from './components/echo/EchoAI';
@@ -59,6 +60,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <StarfieldCanvas />
+      <CosmicCursor />
       <Navbar />
       <AnimatedRoutes />
       <EchoAI />

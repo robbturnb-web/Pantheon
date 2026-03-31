@@ -37,14 +37,14 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
             <EvidenceBadge grade={uapCase.grade} />
             <span
               className="text-xs"
-              style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Georgia, serif' }}
+              style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Cinzel, Georgia, serif' }}
             >
               {uapCase.date}
             </span>
           </div>
           <h3
             className="text-lg font-bold"
-            style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+            style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
           >
             {uapCase.title}
           </h3>
@@ -89,7 +89,7 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
                 >
                   <p
                     className="text-xs tracking-wider uppercase mb-2"
-                    style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Georgia, serif' }}
+                    style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Cinzel, Georgia, serif' }}
                   >
                     Official Explanation
                   </p>
@@ -103,7 +103,7 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
                 >
                   <p
                     className="text-xs tracking-wider uppercase mb-2"
-                    style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+                    style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
                   >
                     Alternative Explanation
                   </p>
@@ -118,7 +118,7 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
                 <div>
                   <p
                     className="text-xs tracking-wider uppercase mb-3"
-                    style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Georgia, serif' }}
+                    style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Cinzel, Georgia, serif' }}
                   >
                     Timeline
                   </p>
@@ -159,7 +159,7 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
               <div>
                 <p
                   className="text-xs tracking-wider uppercase mb-2"
-                  style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Georgia, serif' }}
+                  style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Cinzel, Georgia, serif' }}
                 >
                   Sources
                 </p>
@@ -181,7 +181,7 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
                   background: 'rgba(147,51,234,0.1)',
                   border: '1px solid rgba(147,51,234,0.3)',
                   color: '#c084fc',
-                  fontFamily: 'Georgia, serif',
+                  fontFamily: 'Cinzel, Georgia, serif',
                 }}
               >
                 Ask Echo About This Case

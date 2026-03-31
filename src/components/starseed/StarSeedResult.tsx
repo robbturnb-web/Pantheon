@@ -78,7 +78,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="text-xs tracking-[0.3em] uppercase mb-2"
-            style={{ color: archetype.accentColor, fontFamily: 'Georgia, serif' }}
+            style={{ color: archetype.accentColor, fontFamily: 'Cinzel, Georgia, serif' }}
           >
             Your Archetype
           </motion.p>
@@ -89,7 +89,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-4xl font-bold mb-1"
             style={{
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               color: '#ffffff',
               textShadow: `0 0 30px ${archetype.accentColor}44`,
             }}
@@ -102,7 +102,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="text-base"
-            style={{ color: archetype.accentColor, fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+            style={{ color: archetype.accentColor, fontFamily: 'Cinzel, Georgia, serif', fontStyle: 'italic' }}
           >
             {archetype.subtitle}
           </motion.p>
@@ -112,7 +112,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
         <div className="px-8 py-6" style={{ borderBottom: `1px solid ${archetype.accentColor}22` }}>
           <p
             className="text-xs tracking-widest uppercase mb-4"
-            style={{ color: archetype.accentColor, fontFamily: 'Georgia, serif' }}
+            style={{ color: archetype.accentColor, fontFamily: 'Cinzel, Georgia, serif' }}
           >
             Core Traits
           </p>
@@ -137,13 +137,13 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
         <div className="px-8 py-6">
           <p
             className="text-xs tracking-widest uppercase mb-4"
-            style={{ color: archetype.accentColor, fontFamily: 'Georgia, serif' }}
+            style={{ color: archetype.accentColor, fontFamily: 'Cinzel, Georgia, serif' }}
           >
             Your Mission
           </p>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+            style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'Cinzel, Georgia, serif', fontStyle: 'italic' }}
           >
             "{archetype.missionStatement}"
           </p>
@@ -158,7 +158,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
           style={{
             background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
             color: '#030309',
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'Cinzel, Georgia, serif',
             letterSpacing: '0.1em',
           }}
         >
@@ -173,7 +173,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
             background: saved ? 'rgba(74,222,128,0.15)' : 'rgba(147,51,234,0.15)',
             border: saved ? '1px solid rgba(74,222,128,0.4)' : '1px solid rgba(147,51,234,0.4)',
             color: saved ? '#4ade80' : '#c084fc',
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'Cinzel, Georgia, serif',
             letterSpacing: '0.1em',
           }}
         >

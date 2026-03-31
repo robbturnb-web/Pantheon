@@ -37,13 +37,13 @@ function SubsectionCard({ section }: { section: ConsciousnessSection }) {
           </div>
           <h3
             className="text-lg font-bold mb-0.5"
-            style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+            style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
           >
             {section.title}
           </h3>
           <p
             className="text-xs"
-            style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+            style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Cinzel, Georgia, serif', fontStyle: 'italic' }}
           >
             {section.subtitle}
           </p>
@@ -74,7 +74,7 @@ function SubsectionCard({ section }: { section: ConsciousnessSection }) {
               <div>
                 <p
                   className="text-xs tracking-wider uppercase mb-3"
-                  style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Georgia, serif' }}
+                  style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Cinzel, Georgia, serif' }}
                 >
                   Key Facts
                 </p>
@@ -109,7 +109,7 @@ function SubsectionCard({ section }: { section: ConsciousnessSection }) {
                   background: 'rgba(147,51,234,0.1)',
                   border: '1px solid rgba(147,51,234,0.3)',
                   color: '#c084fc',
-                  fontFamily: 'Georgia, serif',
+                  fontFamily: 'Cinzel, Georgia, serif',
                 }}
               >
                 Ask Echo About This

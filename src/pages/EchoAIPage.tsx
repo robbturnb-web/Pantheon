@@ -87,14 +87,14 @@ export default function EchoAIPage() {
           </div>
           <p
             className="text-xs tracking-[0.3em] uppercase mb-2"
-            style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+            style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
           >
             Pantheon Observatory
           </p>
           <h1
             className="text-4xl font-bold mb-3"
             style={{
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -105,7 +105,7 @@ export default function EchoAIPage() {
           </h1>
           <p
             className="text-sm max-w-md mx-auto"
-            style={{ color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}
+            style={{ color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', fontFamily: 'Cinzel, Georgia, serif' }}
           >
             Evidence-based exploration. Critical thinking guide. Multiple perspectives. Never one narrative.
           </p>
@@ -139,7 +139,7 @@ export default function EchoAIPage() {
                         background: 'rgba(255,255,255,0.04)',
                         border: '1px solid rgba(255,255,255,0.07)',
                         color: 'rgba(255,255,255,0.85)',
-                        fontFamily: 'Georgia, serif',
+                        fontFamily: 'Cinzel, Georgia, serif',
                         whiteSpace: 'pre-wrap',
                       }
                 }
@@ -205,7 +205,7 @@ export default function EchoAIPage() {
             style={{
               background: input.trim() && !streaming ? 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)' : 'rgba(255,255,255,0.06)',
               color: input.trim() && !streaming ? '#030309' : 'rgba(255,255,255,0.3)',
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               letterSpacing: '0.1em',
             }}
           >

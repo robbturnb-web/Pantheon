@@ -110,19 +110,19 @@ export default function OriginChamber({ onClose }: Props) {
               <div className="text-5xl mb-6">✨</div>
               <p
                 className="text-xs tracking-[0.3em] uppercase mb-4"
-                style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+                style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
               >
                 The Origin Chamber
               </p>
               <h2
                 className="text-3xl sm:text-4xl font-bold mb-6"
-                style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+                style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
               >
                 Discover Your<br />Starseed Origin
               </h2>
               <p
                 className="text-sm leading-relaxed mb-10"
-                style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+                style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Cinzel, Georgia, serif', fontStyle: 'italic' }}
               >
                 Three questions. Honest answers only.<br />
                 The cosmos already knows who you are.
@@ -135,7 +135,7 @@ export default function OriginChamber({ onClose }: Props) {
                   border: '1px solid rgba(147,51,234,0.5)',
                   color: '#c084fc',
                   borderRadius: '2px',
-                  fontFamily: 'Georgia, serif',
+                  fontFamily: 'Cinzel, Georgia, serif',
                   letterSpacing: '0.15em',
                   boxShadow: '0 0 30px rgba(147,51,234,0.15)',
                 }}

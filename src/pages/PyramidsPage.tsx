@@ -79,7 +79,7 @@ export default function PyramidsPage() {
                 <span className="text-2xl">{fact.icon}</span>
                 <h3
                   className="font-bold"
-                  style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+                  style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
                 >
                   {fact.title}
                 </h3>
@@ -97,7 +97,7 @@ export default function PyramidsPage() {
             <div className="h-px flex-1" style={{ background: 'rgba(201,168,76,0.2)' }} />
             <h2
               className="text-xl font-bold"
-              style={{ fontFamily: 'Georgia, serif', color: '#c9a84c', flexShrink: 0 }}
+              style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#c9a84c', flexShrink: 0 }}
             >
               Other Anomalous Sites
             </h2>
@@ -120,7 +120,7 @@ export default function PyramidsPage() {
               >
                 <h4
                   className="font-bold mb-1"
-                  style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+                  style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
                 >
                   {site.name}
                 </h4>

@@ -72,7 +72,7 @@ export default function TimelinePage() {
                     </div>
                     <h3
                       className="font-bold mb-2"
-                      style={{ fontFamily: 'Georgia, serif', color: '#ffffff' }}
+                      style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#ffffff' }}
                     >
                       {entry.title}
                     </h3>

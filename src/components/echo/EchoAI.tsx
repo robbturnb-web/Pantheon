@@ -152,7 +152,7 @@ export default function EchoAI() {
               <div>
                 <p
                   className="text-sm font-semibold"
-                  style={{ fontFamily: 'Georgia, serif', color: '#c9a84c' }}
+                  style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#c9a84c' }}
                 >
                   Echo
                 </p>
@@ -189,7 +189,7 @@ export default function EchoAI() {
                             background: 'rgba(255,255,255,0.04)',
                             border: '1px solid rgba(255,255,255,0.08)',
                             color: 'rgba(255,255,255,0.85)',
-                            fontFamily: 'Georgia, serif',
+                            fontFamily: 'Cinzel, Georgia, serif',
                           }
                     }
                   >

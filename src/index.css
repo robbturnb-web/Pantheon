@@ -12,7 +12,8 @@
   --color-purple-dark: #6b21a8;
   --color-purple-light: #c084fc;
   --font-display: "Cinzel", "Georgia", serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-decorative: "Cinzel Decorative", "Cinzel", serif;
+  --font-body: "Raleway", system-ui, sans-serif;
 }
 
 @layer base {

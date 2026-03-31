@@ -53,7 +53,7 @@ export default function HomePage() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="font-bold tracking-[0.2em] uppercase mb-6"
             style={{
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               fontSize: 'clamp(2rem, 6vw, 5rem)',
               background: 'linear-gradient(135deg, #f5c842 0%, #c9a84c 50%, #8a6e2e 100%)',
               WebkitBackgroundClip: 'text',
@@ -87,7 +87,7 @@ export default function HomePage() {
               color: 'rgba(255,255,255,0.7)',
               lineHeight: 1.7,
               letterSpacing: '0.05em',
-              fontFamily: 'Georgia, serif',
+              fontFamily: 'Cinzel, Georgia, serif',
               fontStyle: 'italic',
             }}
           >
@@ -110,7 +110,7 @@ export default function HomePage() {
                 background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
                 color: '#030309',
                 borderRadius: '2px',
-                fontFamily: 'Georgia, serif',
+                fontFamily: 'Cinzel, Georgia, serif',
                 letterSpacing: '0.15em',
               }}
               onMouseEnter={(e) => {
@@ -130,7 +130,7 @@ export default function HomePage() {
                 color: '#c9a84c',
                 border: '1px solid rgba(201,168,76,0.5)',
                 borderRadius: '2px',
-                fontFamily: 'Georgia, serif',
+                fontFamily: 'Cinzel, Georgia, serif',
                 letterSpacing: '0.15em',
               }}
               onMouseEnter={(e) => {
@@ -157,7 +157,7 @@ export default function HomePage() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer scroll-indicator"
           onClick={() => document.getElementById('sections-grid')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.3)', fontFamily: 'Georgia, serif' }}>
+          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.3)', fontFamily: 'Cinzel, Georgia, serif' }}>
             Explore
           </span>
           <ChevronDown size={18} style={{ color: 'rgba(201,168,76,0.5)' }} />
@@ -176,14 +176,14 @@ export default function HomePage() {
           >
             <p
               className="text-xs tracking-[0.3em] uppercase mb-4"
-              style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+              style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
             >
               The Observatory
             </p>
             <h2
               className="text-3xl sm:text-4xl font-bold mb-4"
               style={{
-                fontFamily: 'Georgia, serif',
+                fontFamily: 'Cinzel, Georgia, serif',
                 background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -221,7 +221,7 @@ export default function HomePage() {
                   </div>
                   <span
                     className="text-sm font-semibold tracking-wider uppercase"
-                    style={{ color: '#c9a84c', fontFamily: 'Georgia, serif' }}
+                    style={{ color: '#c9a84c', fontFamily: 'Cinzel, Georgia, serif' }}
                   >
                     {section.label}
                   </span>
@@ -256,7 +256,7 @@ export default function HomePage() {
                 </div>
                 <span
                   className="text-sm font-semibold tracking-wider uppercase"
-                  style={{ color: '#c084fc', fontFamily: 'Georgia, serif' }}
+                  style={{ color: '#c084fc', fontFamily: 'Cinzel, Georgia, serif' }}
                 >
                   Origin Chamber
                 </span>
