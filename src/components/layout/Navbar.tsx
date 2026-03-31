@@ -13,6 +13,9 @@ const navLinks = [
   { label: 'Signals', path: '/signals' },
   { label: 'Community', path: '/community' },
   { label: 'Echo AI', path: '/echo' },
+  { label: 'Transmission', path: '/transmission' },
+  { label: 'Web', path: '/web' },
+  { label: 'Sound', path: '/sound' },
   { label: 'Profile', path: '/profile' },
   { label: 'Search', path: '/search' },
 ];
