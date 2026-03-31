@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -10,7 +10,7 @@ function Stars() {
   useThree();
 
   // Mouse parallax
-  useMemo(() => {
+  useEffect(() => {
     const onMove = (e: MouseEvent) => {
       mouseRef.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       mouseRef.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
@@ -19,7 +19,7 @@ function Stars() {
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
-  // Build 2 200 random star positions in a long tunnel (-150 → +50 on Z)
+  // Build 2,200 random star positions in a long tunnel (-150 → +50 on Z)
   const { positions, colors } = useMemo(() => {
     const count = 2200;
     const positions = new Float32Array(count * 3);

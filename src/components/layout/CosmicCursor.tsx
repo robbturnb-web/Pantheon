@@ -68,8 +68,12 @@ export default function CosmicCursor() {
       cursor.style.opacity = '0';
     };
 
+    const onMouseOut = (event: MouseEvent) => {
+      if (!event.relatedTarget) onLeave();
+    };
+
     window.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseleave', onLeave);
+    window.addEventListener('mouseout', onMouseOut);
 
     // Animation loop
     const draw = () => {
@@ -112,7 +116,7 @@ export default function CosmicCursor() {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('resize', resize);
-      document.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('mouseout', onMouseOut);
     };
   }, []);
 
@@ -164,10 +168,13 @@ export default function CosmicCursor() {
         <div style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', width: 8, height: 1, background: 'rgba(201,168,76,0.7)' }} />
       </div>
 
-      {/* Hide system cursor on desktop */}
+      {/* Hide system cursor on desktop, but preserve cursor on text/interactive controls */}
       <style>{`
         @media (pointer: fine) {
-          *, *::before, *::after { cursor: none !important; }
+          body,
+          body *:not(input):not(textarea):not(button):not(select):not([role="textbox"]):not([contenteditable="true"]) {
+            cursor: none !important;
+          }
         }
       `}</style>
     </>

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft } from 'lucide-react';
 import { gods } from '../data/gods';
@@ -15,9 +15,17 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
+  // Track the askEcho timeout so it can be cleared on unmount
+  const echoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    return () => {
+      if (echoTimerRef.current !== null) clearTimeout(echoTimerRef.current);
+    };
+  }, []);
+
   const askEcho = () => {
     onClose();
-    setTimeout(() => {
+    echoTimerRef.current = setTimeout(() => {
       window.dispatchEvent(new CustomEvent('open-echo', {
         detail: {
           context: 'gods',
@@ -26,6 +34,22 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
       }));
     }, 400);
   };
+
+  // Precompute dust particle seeds once so positions are stable across re-renders
+  const dustParticles = useMemo(
+    () =>
+      Array.from({ length: 18 }, (_, i) => ({
+        width: Math.random() * 3 + 1,
+        height: Math.random() * 3 + 1,
+        color: i % 3 === 0 ? '#c9a84c' : i % 3 === 1 ? '#9333ea' : '#ffffff',
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        yDrift: 30 + Math.random() * 60,
+        duration: 3 + Math.random() * 4,
+        delay: Math.random() * 5,
+      })),
+    []
+  );
 
   return (
     <motion.div
@@ -54,26 +78,26 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
 
       {/* Floating dust particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 18 }).map((_, i) => (
+        {dustParticles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
             style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              background: i % 3 === 0 ? '#c9a84c' : i % 3 === 1 ? '#9333ea' : '#ffffff',
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: `${p.width}px`,
+              height: `${p.height}px`,
+              background: p.color,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
               opacity: 0.6,
             }}
             animate={{
-              y: [0, -(30 + Math.random() * 60)],
+              y: [0, -p.yDrift],
               opacity: [0, 0.7, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 4,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: p.delay,
               ease: 'easeOut',
             }}
           />
