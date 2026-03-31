@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThumbsUp, Send, LogOut } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
+import CommentThread from '../components/community/CommentThread';
 import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../lib/supabase';
 import type { Sighting, Synchronicity, ResearchThread } from '../types';
@@ -140,7 +141,7 @@ function AuthForm() {
 }
 
 // ── Sightings Feed ─────────────────────────────────────────────────────────────
-function SightingsFeed({ userId }: { userId: string }) {
+function SightingsFeed({ userId, user }: { userId: string; user: import('@supabase/supabase-js').User }) {
   const [sightings, setSightings] = useState<Sighting[]>([]);
   const [form, setForm] = useState({ date: '', location: '', description: '', photo_url: '' });
   const [submitting, setSubmitting] = useState(false);
@@ -266,6 +267,7 @@ function SightingsFeed({ userId }: { userId: string }) {
               className="mt-3 rounded max-h-40 object-cover"
             />
           )}
+          <CommentThread parentType="sighting" parentId={s.id} user={user} />
         </div>
       ))}
     </div>
@@ -273,7 +275,7 @@ function SightingsFeed({ userId }: { userId: string }) {
 }
 
 // ── Synchronicity Journal ──────────────────────────────────────────────────────
-function SynchronicityJournal({ userId }: { userId: string }) {
+function SynchronicityJournal({ userId, user }: { userId: string; user: import('@supabase/supabase-js').User }) {
   const [entries, setEntries] = useState<Synchronicity[]>([]);
   const [content, setContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -356,6 +358,7 @@ function SynchronicityJournal({ userId }: { userId: string }) {
             </button>
           </div>
           <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>{entry.content}</p>
+          <CommentThread parentType="synchronicity" parentId={entry.id} user={user} />
         </div>
       ))}
     </div>
@@ -363,7 +366,7 @@ function SynchronicityJournal({ userId }: { userId: string }) {
 }
 
 // ── Research Threads ───────────────────────────────────────────────────────────
-function ResearchThreads({ userId }: { userId: string }) {
+function ResearchThreads({ userId, user }: { userId: string; user: import('@supabase/supabase-js').User }) {
   const [threads, setThreads] = useState<ResearchThread[]>([]);
   const [form, setForm] = useState({ title: '', content: '', topic_tags: '' });
   const [submitting, setSubmitting] = useState(false);
@@ -458,7 +461,7 @@ function ResearchThreads({ userId }: { userId: string }) {
             {thread.content}
           </p>
           {thread.topic_tags?.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5 mb-1">
               {thread.topic_tags.map((tag) => (
                 <span
                   key={tag}
@@ -470,6 +473,7 @@ function ResearchThreads({ userId }: { userId: string }) {
               ))}
             </div>
           )}
+          <CommentThread parentType="thread" parentId={thread.id} user={user} />
         </div>
       ))}
     </div>
@@ -566,9 +570,9 @@ export default function CommunityPage() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {activeTab === 'Sightings Feed' && <SightingsFeed userId={user.id} />}
-                  {activeTab === 'Synchronicity Journal' && <SynchronicityJournal userId={user.id} />}
-                  {activeTab === 'Research Threads' && <ResearchThreads userId={user.id} />}
+                  {activeTab === 'Sightings Feed' && <SightingsFeed userId={user.id} user={user} />}
+                  {activeTab === 'Synchronicity Journal' && <SynchronicityJournal userId={user.id} user={user} />}
+                  {activeTab === 'Research Threads' && <ResearchThreads userId={user.id} user={user} />}
                 </motion.div>
               </AnimatePresence>
             </motion.div>

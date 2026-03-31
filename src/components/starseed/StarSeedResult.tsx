@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Share2, RefreshCw } from 'lucide-react';
+import { Share2, RefreshCw, Check } from 'lucide-react';
 import type { StarSeedArchetype } from '../../types';
+import { supabase } from '../../lib/supabase';
 
 interface Props {
   archetype: StarSeedArchetype;
@@ -9,6 +11,23 @@ interface Props {
 }
 
 export default function StarSeedResult({ archetype, onRetake, onClose }: Props) {
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleSaveToProfile = async () => {
+    setSaving(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      await supabase
+        .from('profiles')
+        .upsert({ id: user.id, starseed_archetype: archetype.id });
+      setSaved(true);
+    } else {
+      alert('Sign in via the Community section to save your archetype to your profile.');
+    }
+    setSaving(false);
+  };
+
   const handleShare = async () => {
     const text = `I discovered my Starseed archetype at Pantheon Observatory:\n\n${archetype.name} — ${archetype.subtitle}\n\n"${archetype.missionStatement}"\n\nDiscover yours: ${window.location.origin}`;
 
@@ -132,10 +151,10 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-3 mt-6">
+      <div className="grid grid-cols-2 gap-3 mt-6">
         <button
           onClick={handleShare}
-          className="flex-1 flex items-center justify-center gap-2 py-3 rounded text-sm tracking-wider uppercase transition-all duration-300"
+          className="flex items-center justify-center gap-2 py-3 rounded text-sm tracking-wider uppercase transition-all duration-300"
           style={{
             background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
             color: '#030309',
@@ -147,8 +166,23 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
           Share
         </button>
         <button
+          onClick={() => void handleSaveToProfile()}
+          disabled={saving || saved}
+          className="flex items-center justify-center gap-2 py-3 rounded text-sm tracking-wider uppercase transition-all duration-300"
+          style={{
+            background: saved ? 'rgba(74,222,128,0.15)' : 'rgba(147,51,234,0.15)',
+            border: saved ? '1px solid rgba(74,222,128,0.4)' : '1px solid rgba(147,51,234,0.4)',
+            color: saved ? '#4ade80' : '#c084fc',
+            fontFamily: 'Georgia, serif',
+            letterSpacing: '0.1em',
+          }}
+        >
+          {saved ? <Check size={14} /> : null}
+          {saved ? 'Saved' : saving ? 'Saving...' : 'Save to Profile'}
+        </button>
+        <button
           onClick={onRetake}
-          className="flex items-center justify-center gap-2 px-5 py-3 rounded text-sm transition-all duration-300"
+          className="flex items-center justify-center gap-2 py-3 rounded text-sm transition-all duration-300"
           style={{
             background: 'rgba(255,255,255,0.05)',
             border: '1px solid rgba(255,255,255,0.1)',
@@ -160,7 +194,7 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
         </button>
         <button
           onClick={onClose}
-          className="flex items-center justify-center gap-2 px-5 py-3 rounded text-sm transition-all duration-300"
+          className="flex items-center justify-center gap-2 py-3 rounded text-sm transition-all duration-300"
           style={{
             background: 'rgba(255,255,255,0.05)',
             border: '1px solid rgba(255,255,255,0.1)',

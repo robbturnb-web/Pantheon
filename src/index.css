@@ -126,4 +126,38 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* Mobile: ensure fixed elements don't overlap content */
+  @media (max-width: 640px) {
+    .section-container {
+      padding: 4.5rem 1rem 6rem;
+    }
+
+    /* Echo AI chat panel — full width on mobile */
+    .echo-panel-mobile {
+      left: 0.75rem !important;
+      right: 0.75rem !important;
+      width: auto !important;
+    }
+  }
+
+  /* Prevent horizontal overflow from wide tables/code */
+  .overflow-x-safe {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Touch-friendly tap targets */
+  @media (pointer: coarse) {
+    button, a[href] {
+      min-height: 40px;
+    }
+  }
+
+  /* iPhone safe area support */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .fixed-bottom-safe {
+      padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+  }
 }

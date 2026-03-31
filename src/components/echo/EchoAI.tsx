@@ -103,7 +103,7 @@ export default function EchoAI() {
     <>
       {/* Floating Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center pulse-gold"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center pulse-gold fixed-bottom-safe"
         style={{
           background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
           boxShadow: '0 4px 24px rgba(201,168,76,0.4)',
@@ -128,10 +128,10 @@ export default function EchoAI() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-24 right-6 z-50 flex flex-col"
+            className="fixed bottom-24 right-3 sm:right-6 z-50 flex flex-col echo-panel-mobile"
             style={{
-              width: 'min(380px, calc(100vw - 3rem))',
-              height: '480px',
+              width: 'min(380px, calc(100vw - 1.5rem))',
+              height: 'min(480px, calc(100dvh - 8rem))',
               background: 'linear-gradient(135deg, #0a0a1a 0%, #12122a 100%)',
               border: '1px solid rgba(201,168,76,0.3)',
               borderRadius: '12px',

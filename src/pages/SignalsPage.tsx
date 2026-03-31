@@ -134,7 +134,7 @@ export default function SignalsPage() {
                     </p>
 
                     <div
-                      className="p-3 rounded text-xs leading-relaxed"
+                      className="p-3 rounded text-xs leading-relaxed mb-3"
                       style={{
                         background: `${ratingConfig[rating].bg}`,
                         border: `1px solid ${ratingConfig[rating].border}`,
@@ -143,6 +143,24 @@ export default function SignalsPage() {
                     >
                       {creator.ratingNote}
                     </div>
+
+                    <button
+                      onClick={() => window.dispatchEvent(new CustomEvent('open-echo', {
+                        detail: {
+                          context: 'signals',
+                          prompt: `Help me evaluate ${creator.name} as an information source. What do they get right, where should I be skeptical, and how do I verify their claims independently?`,
+                        }
+                      }))}
+                      className="w-full py-2 text-xs tracking-wider uppercase rounded transition-all duration-200"
+                      style={{
+                        background: 'rgba(147,51,234,0.08)',
+                        border: '1px solid rgba(147,51,234,0.25)',
+                        color: '#c084fc',
+                        fontFamily: 'Georgia, serif',
+                      }}
+                    >
+                      Ask Echo About {creator.name.split(' ')[0]}
+                    </button>
                   </motion.div>
                 ))}
               </div>

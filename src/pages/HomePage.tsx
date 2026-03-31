@@ -105,7 +105,7 @@ export default function HomePage() {
               onClick={() => {
                 document.getElementById('sections-grid')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-3.5 text-sm tracking-widest uppercase font-medium transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-3.5 text-sm tracking-widest uppercase font-medium transition-all duration-300"
               style={{
                 background: 'linear-gradient(135deg, #c9a84c 0%, #8a6e2e 100%)',
                 color: '#030309',
@@ -124,7 +124,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => setChamberOpen(true)}
-              className="px-8 py-3.5 text-sm tracking-widest uppercase font-medium transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-3.5 text-sm tracking-widest uppercase font-medium transition-all duration-300"
               style={{
                 background: 'transparent',
                 color: '#c9a84c',
