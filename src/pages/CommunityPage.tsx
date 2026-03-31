@@ -152,6 +152,20 @@ function SightingsFeed({ userId, user }: { userId: string; user: import('@supaba
       .select('*, profiles(username)')
       .order('created_at', { ascending: false })
       .then(({ data }) => setSightings((data as Sighting[]) ?? []));
+
+    const channel = supabase
+      .channel('sightings-live')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'sightings' }, async (payload) => {
+        const { data } = await supabase
+          .from('sightings')
+          .select('*, profiles(username)')
+          .eq('id', (payload.new as Sighting).id)
+          .single();
+        if (data) setSightings((prev) => [data as Sighting, ...prev]);
+      })
+      .subscribe();
+
+    return () => { void supabase.removeChannel(channel); };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -286,6 +300,20 @@ function SynchronicityJournal({ userId, user }: { userId: string; user: import('
       .select('*, profiles(username)')
       .order('created_at', { ascending: false })
       .then(({ data }) => setEntries((data as Synchronicity[]) ?? []));
+
+    const channel = supabase
+      .channel('synchronicities-live')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'synchronicities' }, async (payload) => {
+        const { data } = await supabase
+          .from('synchronicities')
+          .select('*, profiles(username)')
+          .eq('id', (payload.new as Synchronicity).id)
+          .single();
+        if (data) setEntries((prev) => [data as Synchronicity, ...prev]);
+      })
+      .subscribe();
+
+    return () => { void supabase.removeChannel(channel); };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -377,6 +405,20 @@ function ResearchThreads({ userId, user }: { userId: string; user: import('@supa
       .select('*, profiles(username)')
       .order('created_at', { ascending: false })
       .then(({ data }) => setThreads((data as ResearchThread[]) ?? []));
+
+    const channel = supabase
+      .channel('threads-live')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'research_threads' }, async (payload) => {
+        const { data } = await supabase
+          .from('research_threads')
+          .select('*, profiles(username)')
+          .eq('id', (payload.new as ResearchThread).id)
+          .single();
+        if (data) setThreads((prev) => [data as ResearchThread, ...prev]);
+      })
+      .subscribe();
+
+    return () => { void supabase.removeChannel(channel); };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -14,6 +14,13 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  // Always persist to localStorage so Echo can greet by archetype
+  useState(() => {
+    try {
+      localStorage.setItem('pantheon_starseed', JSON.stringify({ archetype: archetype.name }));
+    } catch { /* ignore */ }
+  });
+
   const handleSaveToProfile = async () => {
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();

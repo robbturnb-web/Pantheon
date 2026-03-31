@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/ui/SectionTitle';
 import { timelineEntries } from '../data/timeline';
+import SacredGeometry from '../components/layout/SacredGeometry';
 
 const categoryColors: Record<string, string> = {
   ancient: '#c9a84c',
@@ -11,6 +12,8 @@ const categoryColors: Record<string, string> = {
 
 export default function TimelinePage() {
   return (
+    <>
+    <SacredGeometry variant="vesica" color="#a78bfa" opacity={0.28} />
     <div className="section-container">
       <div className="max-w-3xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -90,5 +93,6 @@ export default function TimelinePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

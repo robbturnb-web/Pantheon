@@ -1,10 +1,27 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import EvidenceBadge from '../components/ui/EvidenceBadge';
 import SectionTitle from '../components/ui/SectionTitle';
+import UAPGlobe from '../components/uap/UAPGlobe';
 import { uapCases } from '../data/uap-cases';
 import type { UAPCase } from '../types';
+import type { GlobePin } from '../components/uap/UAPGlobe';
+
+const GLOBE_PINS: GlobePin[] = [
+  { id: 'nimitz',             title: 'USS Nimitz Tic Tac',          date: 'Nov 2004',  lat: 32.7,  lon: -117.2, grade: 'DOCUMENTED'  },
+  { id: 'grusch',             title: 'David Grusch Testimony',       date: 'Jul 2023',  lat: 38.9,  lon:  -77.0, grade: 'DOCUMENTED'  },
+  { id: 'phoenix-lights',     title: 'The Phoenix Lights',           date: 'Mar 1997',  lat: 33.4,  lon: -112.0, grade: 'CREDIBLE'    },
+  { id: 'roswell',            title: 'Roswell',                      date: 'Jul 1947',  lat: 33.4,  lon: -104.5, grade: 'CREDIBLE'    },
+  { id: 'bledsoe',            title: 'Chris Bledsoe Orbs',           date: 'Jan 2007',  lat: 35.0,  lon:  -79.0, grade: 'CREDIBLE'    },
+  { id: 'bob-lazar',          title: 'Bob Lazar — Area 51',          date: 'May 1989',  lat: 37.2,  lon: -115.8, grade: 'SPECULATIVE' },
+  { id: 'brandon-dale-biggs', title: 'Brandon Dale Biggs',           date: '2017+',     lat: 36.1,  lon:  -86.8, grade: 'SPECULATIVE' },
+  { id: 'rendlesham',         title: 'Rendlesham Forest',            date: 'Dec 1980',  lat: 52.1,  lon:    1.4, grade: 'CREDIBLE'    },
+  { id: 'jal1628',            title: 'JAL Flight 1628',              date: 'Nov 1986',  lat: 61.0,  lon: -147.0, grade: 'CREDIBLE'    },
+  { id: 'aguadilla',          title: 'Aguadilla UAP',                date: 'Apr 2013',  lat: 18.5,  lon:  -67.1, grade: 'CREDIBLE'    },
+  { id: 'tehran-1976',        title: 'Tehran UFO Incident',          date: 'Sep 1976',  lat: 35.7,  lon:   51.4, grade: 'DOCUMENTED'  },
+  { id: 'westall',            title: 'Westall — Melbourne',          date: 'Apr 1966',  lat: -37.8, lon:  145.0, grade: 'CREDIBLE'    },
+];
 
 function CaseCard({ uapCase }: { uapCase: UAPCase }) {
   const [expanded, setExpanded] = useState(false);
@@ -195,6 +212,11 @@ function CaseCard({ uapCase }: { uapCase: UAPCase }) {
 }
 
 export default function UAPPage() {
+  const handleSelectCase = useCallback((id: string) => {
+    const el = document.getElementById(`case-${id}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
   return (
     <div className="section-container">
       <div className="max-w-4xl mx-auto">
@@ -224,10 +246,25 @@ export default function UAPPage() {
           ))}
         </motion.div>
 
+        {/* 3D Globe */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-10 rounded overflow-hidden"
+          style={{ border: '1px solid rgba(201,168,76,0.12)', background: 'rgba(3,3,9,0.6)' }}
+        >
+          <p className="text-center text-xs tracking-[0.2em] uppercase pt-4 pb-1" style={{ color: 'rgba(201,168,76,0.5)', fontFamily: 'Cinzel, Georgia, serif' }}>
+            Global Incident Map — click a pin to jump to case
+          </p>
+          <UAPGlobe pins={GLOBE_PINS} onSelectCase={handleSelectCase} />
+        </motion.div>
+
         <div className="space-y-4">
           {uapCases.map((c, i) => (
             <motion.div
               key={c.id}
+              id={`case-${c.id}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.07 }}

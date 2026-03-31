@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/ui/SectionTitle';
+import SacredGeometry from '../components/layout/SacredGeometry';
 
 const pyramidFacts = [
   {
@@ -54,6 +55,8 @@ const otherSites = [
 
 export default function PyramidsPage() {
   return (
+    <>
+    <SacredGeometry variant="sri-yantra" color="#c9a84c" opacity={0.3} />
     <div className="section-container">
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -138,5 +141,6 @@ export default function PyramidsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

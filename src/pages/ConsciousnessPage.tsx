@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import EvidenceBadge from '../components/ui/EvidenceBadge';
 import SectionTitle from '../components/ui/SectionTitle';
+import SacredGeometry from '../components/layout/SacredGeometry';
 import { consciousnessSections } from '../data/consciousness';
 import type { ConsciousnessSection } from '../types';
 
@@ -124,6 +125,8 @@ function SubsectionCard({ section }: { section: ConsciousnessSection }) {
 
 export default function ConsciousnessPage() {
   return (
+    <>
+    <SacredGeometry variant="metatron" color="#34d399" opacity={0.35} />
     <div className="section-container">
       <div className="max-w-3xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -148,5 +151,6 @@ export default function ConsciousnessPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

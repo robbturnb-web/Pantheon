@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Telescope } from 'lucide-react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, Telescope, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -13,11 +13,14 @@ const navLinks = [
   { label: 'Signals', path: '/signals' },
   { label: 'Community', path: '/community' },
   { label: 'Echo AI', path: '/echo' },
+  { label: 'Profile', path: '/profile' },
+  { label: 'Search', path: '/search' },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
@@ -72,6 +75,18 @@ export default function Navbar() {
               </NavLink>
             ))}
           </div>
+
+          {/* Search icon (desktop) */}
+          <button
+            className="hidden lg:flex items-center justify-center w-8 h-8 rounded transition-all"
+            style={{ color: 'rgba(255,255,255,0.5)' }}
+            onClick={() => navigate('/search')}
+            aria-label="Search"
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#c9a84c'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.5)'; }}
+          >
+            <Search size={16} />
+          </button>
 
           {/* Mobile hamburger */}
           <button

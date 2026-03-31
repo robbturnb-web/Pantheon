@@ -14,6 +14,8 @@ import ConsciousnessPage from './pages/ConsciousnessPage';
 import SignalsPage from './pages/SignalsPage';
 import CommunityPage from './pages/CommunityPage';
 import EchoAIPage from './pages/EchoAIPage';
+import ProfilePage from './pages/ProfilePage';
+import SearchPage from './pages/SearchPage';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -49,6 +51,8 @@ function AnimatedRoutes() {
           <Route path="/signals" element={<SignalsPage />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/echo" element={<EchoAIPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
         <Footer />
       </motion.div>
