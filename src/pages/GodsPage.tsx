@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft } from 'lucide-react';
 import { gods } from '../data/gods';
@@ -373,17 +373,19 @@ function GodCard({ god, onClick }: { god: God; onClick: () => void }) {
 export default function GodsPage() {
   const [filter, setFilter] = useState<PantheonFilter>('All');
   const [activeGod, setActiveGod] = useState<God | null>(null);
+  const prevOverflowRef = useRef<string>('');
 
   const filteredGods = filter === 'All' ? gods : gods.filter((g) => g.pantheon === filter);
 
   const handleOpen = useCallback((god: God) => {
+    prevOverflowRef.current = document.body.style.overflow;
     setActiveGod(god);
     document.body.style.overflow = 'hidden';
   }, []);
 
   const handleClose = useCallback(() => {
     setActiveGod(null);
-    document.body.style.overflow = '';
+    document.body.style.overflow = prevOverflowRef.current;
   }, []);
 
   return (
