@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "civilian_law_of_knowledge": {
+      "enabled": true
+    },
+    "notion": {
+      "enabled": true
+    },
+    "pantheon": {
+      "enabled": true
+    }
+  }
+}
