@@ -142,35 +142,56 @@ function ConnectionLines({ nodes, simNodes, activeId }: {
     return m;
   }, [simNodes]);
 
-  const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
-  const activeConnections = new Set(activeNode?.connections ?? []);
-  if (activeId) activeConnections.add(activeId);
-
-  useFrame(() => {
-    if (!linesRef.current) return;
-    linesRef.current.children.forEach((child, i) => {
-      const line = child as THREE.Line;
-      const nodeA = nodes[Math.floor(i / nodes.length)] as WebNode | undefined;
-      const isActive = !activeId || (nodeA && activeConnections.has(nodeA.id));
-      const mat = line.material as THREE.LineBasicMaterial;
-      mat.opacity = isActive ? (activeId ? 0.35 : 0.12) : 0.03;
-    });
-  });
-
+  // Pre-filter so rendered children index matches lineSegments index (no null gaps)
   const lineSegments = useMemo(() => {
     const segs: { from: string; to: string; color: string }[] = [];
     const seen = new Set<string>();
     nodes.forEach((n) => {
       n.connections.forEach((cid) => {
         const key = [n.id, cid].sort().join('--');
-        if (!seen.has(key)) {
+        if (!seen.has(key) && posMap.has(n.id) && posMap.has(cid)) {
           seen.add(key);
           segs.push({ from: n.id, to: cid, color: CATEGORY_COLORS[n.category] });
         }
       });
     });
     return segs;
-  }, [nodes]);
+  }, [nodes, posMap]);
+
+  // Keep a stable ref so useFrame can read the current value without re-registering
+  const segmentsRef = useRef(lineSegments);
+  segmentsRef.current = lineSegments;
+
+  useFrame(() => {
+    if (!linesRef.current) return;
+
+    const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
+    const activeConnections = new Set(activeNode?.connections ?? []);
+    if (activeId) activeConnections.add(activeId);
+
+    linesRef.current.children.forEach((child, i) => {
+      const seg = segmentsRef.current[i];
+      if (!seg) return;
+      const line = child as THREE.Line;
+      const { from, to } = seg;
+
+      // Update geometry endpoints to track live node positions
+      const a = posMap.get(from);
+      const b = posMap.get(to);
+      if (a && b) {
+        const posAttr = line.geometry.attributes.position;
+        const arr = posAttr.array as Float32Array;
+        arr[0] = a.pos.x; arr[1] = a.pos.y; arr[2] = a.pos.z;
+        arr[3] = b.pos.x; arr[4] = b.pos.y; arr[5] = b.pos.z;
+        posAttr.needsUpdate = true;
+      }
+
+      // Update opacity based on active selection
+      const isActive = !activeId || activeConnections.has(from) || activeConnections.has(to);
+      const mat = line.material as THREE.LineBasicMaterial;
+      mat.opacity = isActive ? (activeId ? 0.35 : 0.12) : 0.03;
+    });
+  });
 
   return (
     <group ref={linesRef}>

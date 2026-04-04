@@ -72,11 +72,15 @@ export default function CosmicCursor() {
       if (!event.relatedTarget) onLeave();
     };
 
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseout', onMouseOut);
-
-    // Animation loop
+    // Animation loop — runs only when cursor is visible or live particles remain
+    let rafId = 0;
     const draw = () => {
+      const hasParticles = particlesRef.current.some((p) => p.life > 0);
+      if (!visibleRef.current && !hasParticles) {
+        rafId = 0;
+        return;
+      }
+
       // Move crosshair dot
       const { x, y } = posRef.current;
       cursor.style.transform = `translate(${x - 12}px, ${y - 12}px)`;
@@ -107,14 +111,30 @@ export default function CosmicCursor() {
         ctx.fill();
       }
 
-      rafRef.current = requestAnimationFrame(draw);
+      rafId = requestAnimationFrame(draw);
+    };
+    rafRef.current = 0;
+
+    // Kick off the loop whenever the cursor becomes visible
+    const startLoop = () => {
+      if (!rafId) {
+        rafId = requestAnimationFrame(draw);
+        rafRef.current = rafId;
+      }
     };
 
-    draw();
+    const origOnMove = onMove;
+    const wrappedOnMove = (e: MouseEvent) => {
+      origOnMove(e);
+      startLoop();
+    };
+
+    window.addEventListener('mousemove', wrappedOnMove);
+    window.addEventListener('mouseout', onMouseOut);
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', wrappedOnMove);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mouseout', onMouseOut);
     };
@@ -168,11 +188,11 @@ export default function CosmicCursor() {
         <div style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', width: 8, height: 1, background: 'rgba(201,168,76,0.7)' }} />
       </div>
 
-      {/* Hide system cursor on desktop, but preserve cursor on text/interactive controls */}
+      {/* Hide system cursor on desktop, but preserve cursor on text/form controls */}
       <style>{`
         @media (pointer: fine) {
           body,
-          body *:not(input):not(textarea):not(button):not(select):not([role="textbox"]):not([contenteditable="true"]) {
+          body *:not(input):not(textarea):not(select):not([role="textbox"]):not([contenteditable="true"]) {
             cursor: none !important;
           }
         }

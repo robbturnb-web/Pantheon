@@ -76,10 +76,9 @@ function PinMesh({ pin, onHover, onSelect, isHovered }: PinMeshProps) {
 // ── Globe body + lat/lon grid ─────────────────────────────────────────────────
 function GlobeMesh() {
   const groupRef = useRef<THREE.Group>(null!);
-  const isDragging = useRef(false);
 
   useFrame((_, delta) => {
-    if (groupRef.current && !isDragging.current) {
+    if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.06;
     }
   });

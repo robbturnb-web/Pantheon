@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Share2, RefreshCw, Check } from 'lucide-react';
 import type { StarSeedArchetype } from '../../types';
@@ -15,11 +15,11 @@ export default function StarSeedResult({ archetype, onRetake, onClose }: Props) 
   const [saving, setSaving] = useState(false);
 
   // Always persist to localStorage so Echo can greet by archetype
-  useState(() => {
+  useEffect(() => {
     try {
       localStorage.setItem('pantheon_starseed', JSON.stringify({ archetype: archetype.name }));
     } catch { /* ignore */ }
-  });
+  }, [archetype.name]);
 
   const handleSaveToProfile = async () => {
     setSaving(true);

@@ -7,7 +7,7 @@ import type { God, PantheonFilter } from '../types';
 const filters: PantheonFilter[] = ['All', 'Greek', 'Norse', 'Egyptian', 'Hindu', 'Anunnaki', 'Starseed'];
 
 // ── Cinematic full-screen takeover ────────────────────────────────────────────
-function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
+function GodCinematic({ god, onClose, onAskEcho }: { god: God; onClose: () => void; onAskEcho: () => void }) {
   // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -15,24 +15,8 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  // Track the askEcho timeout so it can be cleared on unmount
-  const echoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => {
-    return () => {
-      if (echoTimerRef.current !== null) clearTimeout(echoTimerRef.current);
-    };
-  }, []);
-
   const askEcho = () => {
-    onClose();
-    echoTimerRef.current = setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('open-echo', {
-        detail: {
-          context: 'gods',
-          prompt: `Tell me about ${god.name} — their domain, archetype role, and what ancient peoples believed about them. Explore the cross-cultural parallels with similar deities.`,
-        },
-      }));
-    }, 400);
+    onAskEcho();
   };
 
   // Precompute dust particle seeds once so positions are stable across re-renders
@@ -107,6 +91,7 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
       {/* Close button */}
       <button
         onClick={onClose}
+        aria-label="Close"
         className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
         style={{
           background: 'rgba(3,3,9,0.6)',
@@ -122,6 +107,7 @@ function GodCinematic({ god, onClose }: { god: God; onClose: () => void }) {
       {/* Back label */}
       <button
         onClick={onClose}
+        aria-label="Return to The Gods"
         className="absolute top-6 left-6 z-10 flex items-center gap-1.5 transition-all duration-200"
         style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', letterSpacing: '0.1em' }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#c9a84c'; }}
@@ -324,6 +310,10 @@ function GodCard({ god, onClick }: { god: God; onClick: () => void }) {
         border: '1px solid rgba(201,168,76,0.1)',
       }}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open ${god.name} cinematic view`}
       whileHover={{ y: -4, borderColor: 'rgba(201,168,76,0.4)', transition: { duration: 0.2 } }}
     >
       {/* Atmospheric preview strip */}
@@ -398,6 +388,7 @@ export default function GodsPage() {
   const [filter, setFilter] = useState<PantheonFilter>('All');
   const [activeGod, setActiveGod] = useState<God | null>(null);
   const prevOverflowRef = useRef<string>('');
+  const echoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filteredGods = filter === 'All' ? gods : gods.filter((g) => g.pantheon === filter);
 
@@ -411,6 +402,27 @@ export default function GodsPage() {
     setActiveGod(null);
     document.body.style.overflow = prevOverflowRef.current;
   }, []);
+
+  // Restore overflow if the component unmounts while an overlay is open
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = prevOverflowRef.current;
+      if (echoTimerRef.current !== null) clearTimeout(echoTimerRef.current);
+    };
+  }, []);
+
+  // Move askEcho dispatch to the parent so the timer survives GodCinematic unmount
+  const handleAskEcho = useCallback((godName: string) => {
+    handleClose();
+    echoTimerRef.current = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('open-echo', {
+        detail: {
+          context: 'gods',
+          prompt: `Tell me about ${godName} — their domain, archetype role, and what ancient peoples believed about them. Explore the cross-cultural parallels with similar deities.`,
+        },
+      }));
+    }, 400);
+  }, [handleClose]);
 
   return (
     <div className="section-container">
@@ -478,7 +490,13 @@ export default function GodsPage() {
 
       {/* Cinematic Overlay */}
       <AnimatePresence>
-        {activeGod && <GodCinematic god={activeGod} onClose={handleClose} />}
+        {activeGod && (
+          <GodCinematic
+            god={activeGod}
+            onClose={handleClose}
+            onAskEcho={() => handleAskEcho(activeGod.name)}
+          />
+        )}
       </AnimatePresence>
     </div>
   );

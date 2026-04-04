@@ -95,18 +95,22 @@ export default function ProfilePage() {
   const saveBio = async () => {
     if (!user) return;
     setSaving(true);
-    await supabase.from('profiles').upsert({ id: user.id, bio: bioInput });
-    setProfile((p) => p ? { ...p, bio: bioInput } : p);
-    setEditingBio(false);
+    const { error } = await supabase.from('profiles').upsert({ id: user.id, bio: bioInput });
+    if (!error) {
+      setProfile((p) => p ? { ...p, bio: bioInput } : p);
+      setEditingBio(false);
+    }
     setSaving(false);
   };
 
   const saveUsername = async () => {
     if (!user) return;
     setSaving(true);
-    await supabase.from('profiles').upsert({ id: user.id, username: usernameInput });
-    setProfile((p) => p ? { ...p, username: usernameInput } : p);
-    setEditingUsername(false);
+    const { error } = await supabase.from('profiles').upsert({ id: user.id, username: usernameInput });
+    if (!error) {
+      setProfile((p) => p ? { ...p, username: usernameInput } : p);
+      setEditingUsername(false);
+    }
     setSaving(false);
   };
 

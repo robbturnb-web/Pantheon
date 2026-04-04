@@ -1,5 +1,5 @@
 import { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // ── Star field (warp tunnel on mount, then gentle drift) ──────────────────────
@@ -7,7 +7,6 @@ function Stars() {
   const pointsRef = useRef<THREE.Points>(null!);
   const warpRef = useRef({ speed: 4.5, elapsed: 0 });
   const mouseRef = useRef({ x: 0, y: 0 });
-  useThree();
 
   // Mouse parallax
   useEffect(() => {
