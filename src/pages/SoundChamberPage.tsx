@@ -208,23 +208,36 @@ function useAudioEngine() {
       binauralLRef.current?.stop();
       binauralRRef.current?.stop();
     } catch { /* already stopped */ }
+    try {
+      oscRef.current?.disconnect();
+      binauralLRef.current?.disconnect();
+      binauralRRef.current?.disconnect();
+      mergerRef.current?.disconnect();
+    } catch { /* already disconnected */ }
     oscRef.current       = null;
     binauralLRef.current = null;
     binauralRRef.current = null;
+    mergerRef.current    = null;
   }, []);
 
   const play = useCallback((track: FrequencyTrack, volume: number) => {
     stop();
     if (!ctxRef.current || ctxRef.current.state === 'closed') {
+      gainRef.current?.disconnect();
+      gainRef.current = null;
       ctxRef.current = new AudioContext();
     }
     const ctx = ctxRef.current;
     if (ctx.state === 'suspended') void ctx.resume();
 
-    const gain = gainRef.current ?? ctx.createGain();
-    gainRef.current = gain;
+    // Reuse gain node within same AudioContext; create once and connect once
+    let gain = gainRef.current;
+    if (!gain) {
+      gain = ctx.createGain();
+      gain.connect(ctx.destination);
+      gainRef.current = gain;
+    }
     gain.gain.setValueAtTime(volume * 0.15, ctx.currentTime);
-    gain.connect(ctx.destination);
 
     // Main tone (low-volume sine — audible foundation)
     const osc = ctx.createOscillator();

@@ -136,26 +136,12 @@ function ConnectionLines({ nodes, simNodes, activeId }: {
   activeId: string | null;
 }) {
   const linesRef = useRef<THREE.Group>(null!);
+
   const posMap = useMemo(() => {
     const m = new Map<string, SimNode>();
     simNodes.forEach((s) => m.set(s.id, s));
     return m;
   }, [simNodes]);
-
-  const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
-  const activeConnections = new Set(activeNode?.connections ?? []);
-  if (activeId) activeConnections.add(activeId);
-
-  useFrame(() => {
-    if (!linesRef.current) return;
-    linesRef.current.children.forEach((child, i) => {
-      const line = child as THREE.Line;
-      const nodeA = nodes[Math.floor(i / nodes.length)] as WebNode | undefined;
-      const isActive = !activeId || (nodeA && activeConnections.has(nodeA.id));
-      const mat = line.material as THREE.LineBasicMaterial;
-      mat.opacity = isActive ? (activeId ? 0.35 : 0.12) : 0.03;
-    });
-  });
 
   const lineSegments = useMemo(() => {
     const segs: { from: string; to: string; color: string }[] = [];
@@ -172,21 +158,54 @@ function ConnectionLines({ nodes, simNodes, activeId }: {
     return segs;
   }, [nodes]);
 
+  // Pre-build geometries with Float32 position buffers so we can mutate them each frame
+  const geos = useMemo(() =>
+    lineSegments.map(() => {
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+      return geo;
+    }),
+  [lineSegments]);
+
+  const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
+  const activeConnectionsRef = useRef(new Set<string>());
+
+  useFrame(() => {
+    const active = new Set(activeNode?.connections ?? []);
+    if (activeId) active.add(activeId);
+    activeConnectionsRef.current = active;
+
+    if (!linesRef.current) return;
+    linesRef.current.children.forEach((child, i) => {
+      const line = child as THREE.Line;
+      const seg = lineSegments[i];
+      if (!seg) return;
+
+      // Update vertex positions to track moving nodes
+      const a = posMap.get(seg.from);
+      const b = posMap.get(seg.to);
+      if (a && b) {
+        const buf = (line.geometry as THREE.BufferGeometry).attributes.position as THREE.BufferAttribute;
+        buf.setXYZ(0, a.pos.x, a.pos.y, a.pos.z);
+        buf.setXYZ(1, b.pos.x, b.pos.y, b.pos.z);
+        buf.needsUpdate = true;
+      }
+
+      // Update opacity based on active selection
+      const isActive = !activeId || active.has(seg.from) || active.has(seg.to);
+      const mat = line.material as THREE.LineBasicMaterial;
+      mat.opacity = isActive ? (activeId ? 0.35 : 0.12) : 0.03;
+    });
+  });
+
   return (
     <group ref={linesRef}>
-      {lineSegments.map(({ from, to, color }) => {
-        const a = posMap.get(from);
-        const b = posMap.get(to);
-        if (!a || !b) return null;
-        const pts = [a.pos.clone(), b.pos.clone()];
-        const geo = new THREE.BufferGeometry().setFromPoints(pts);
-        return (
-          <line key={`${from}-${to}`}>
-            <primitive object={geo} attach="geometry" />
-            <lineBasicMaterial color={color} transparent opacity={0.12} />
-          </line>
-        );
-      })}
+      {lineSegments.map(({ color }, i) => (
+        <line key={i}>
+          <primitive object={geos[i]} attach="geometry" />
+          <lineBasicMaterial color={color} transparent opacity={0.12} />
+        </line>
+      ))}
     </group>
   );
 }

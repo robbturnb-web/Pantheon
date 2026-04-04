@@ -112,9 +112,11 @@ export default function TransmissionPage() {
     if (navigator.share) {
       try { await navigator.share({ title: 'Daily Transmission', text }); } catch { /* cancelled */ }
     } else {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch { /* clipboard unavailable */ }
     }
   };
 
