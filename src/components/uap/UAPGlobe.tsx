@@ -78,7 +78,7 @@ function GlobeMesh({ isDragging }: { isDragging: MutableRefObject<boolean> }) {
   const groupRef = useRef<THREE.Group>(null!);
 
   useFrame((_, delta) => {
-    if (groupRef.current) {
+    if (groupRef.current && !isDragging.current) {
       groupRef.current.rotation.y += delta * 0.06;
     }
   });

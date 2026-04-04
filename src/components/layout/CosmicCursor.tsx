@@ -38,31 +38,6 @@ export default function CosmicCursor() {
     resize();
     window.addEventListener('resize', resize);
 
-    const onMove = (e: MouseEvent) => {
-      posRef.current = { x: e.clientX, y: e.clientY };
-      if (!visibleRef.current) {
-        visibleRef.current = true;
-        cursor.style.opacity = '1';
-      }
-
-      // Spawn 2-3 particles
-      const count = 2 + Math.floor(Math.random() * 2);
-      for (let i = 0; i < count; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 0.5 + Math.random() * 1.5;
-        particlesRef.current.push({
-          x: e.clientX,
-          y: e.clientY,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 0.8,  // slight upward drift
-          life: 1,
-          maxLife: 0.025 + Math.random() * 0.03,  // life dec per frame (60fps → ~0.8s)
-          size: 1.5 + Math.random() * 2.5,
-          hue: Math.random() < 0.75 ? 43 : 280,   // 75% gold, 25% purple
-        });
-      }
-    };
-
     const onLeave = () => {
       visibleRef.current = false;
       cursor.style.opacity = '0';
@@ -115,26 +90,43 @@ export default function CosmicCursor() {
     };
     rafRef.current = 0;
 
-    // Kick off the loop whenever the cursor becomes visible
-    const startLoop = () => {
+    const onMove = (e: MouseEvent) => {
+      posRef.current = { x: e.clientX, y: e.clientY };
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        cursor.style.opacity = '1';
+      }
+
+      // Spawn 2-3 particles
+      const count = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.5 + Math.random() * 1.5;
+        particlesRef.current.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 0.8,  // slight upward drift
+          life: 1,
+          maxLife: 0.025 + Math.random() * 0.03,  // life dec per frame (60fps → ~0.8s)
+          size: 1.5 + Math.random() * 2.5,
+          hue: Math.random() < 0.75 ? 43 : 280,   // 75% gold, 25% purple
+        });
+      }
+
+      // Kick off the animation loop if not already running
       if (!rafId) {
         rafId = requestAnimationFrame(draw);
         rafRef.current = rafId;
       }
     };
 
-    const origOnMove = onMove;
-    const wrappedOnMove = (e: MouseEvent) => {
-      origOnMove(e);
-      startLoop();
-    };
-
-    window.addEventListener('mousemove', wrappedOnMove);
+    window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseout', onMouseOut);
 
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener('mousemove', wrappedOnMove);
+      window.removeEventListener('mousemove', onMove);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mouseout', onMouseOut);
     };
