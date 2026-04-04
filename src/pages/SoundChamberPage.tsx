@@ -208,10 +208,12 @@ function useAudioEngine() {
       binauralLRef.current?.stop();
       binauralRRef.current?.stop();
     } catch { /* already stopped */ }
-    oscRef.current?.disconnect();
-    binauralLRef.current?.disconnect();
-    binauralRRef.current?.disconnect();
-    mergerRef.current?.disconnect();
+    try {
+      oscRef.current?.disconnect();
+      binauralLRef.current?.disconnect();
+      binauralRRef.current?.disconnect();
+      mergerRef.current?.disconnect();
+    } catch { /* already disconnected */ }
     oscRef.current       = null;
     binauralLRef.current = null;
     binauralRRef.current = null;
@@ -228,6 +230,7 @@ function useAudioEngine() {
     const ctx = ctxRef.current;
     if (ctx.state === 'suspended') void ctx.resume();
 
+    // Reuse gain node within same AudioContext; create once and connect once
     let gain = gainRef.current;
     if (!gain) {
       gain = ctx.createGain();

@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState, useMemo, type MutableRefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -74,7 +74,7 @@ function PinMesh({ pin, onHover, onSelect, isHovered }: PinMeshProps) {
 }
 
 // ── Globe body + lat/lon grid ─────────────────────────────────────────────────
-function GlobeMesh() {
+function GlobeMesh({ isDragging }: { isDragging: MutableRefObject<boolean> }) {
   const groupRef = useRef<THREE.Group>(null!);
 
   useFrame((_, delta) => {
@@ -147,12 +147,14 @@ interface SceneProps {
 }
 
 function Scene({ pins, hoveredId, onHover, onSelect }: SceneProps) {
+  const isDragging = useRef(false);
+
   return (
     <>
       <ambientLight intensity={0.4} />
       <pointLight position={[8, 8, 8]} color="#c9a84c" intensity={1.5} />
       <pointLight position={[-8, -4, -8]} color="#9333ea" intensity={0.8} />
-      <GlobeMesh />
+      <GlobeMesh isDragging={isDragging} />
       {pins.map((pin) => (
         <PinMesh
           key={pin.id}
@@ -168,6 +170,8 @@ function Scene({ pins, hoveredId, onHover, onSelect }: SceneProps) {
         rotateSpeed={0.5}
         minPolarAngle={Math.PI * 0.2}
         maxPolarAngle={Math.PI * 0.8}
+        onStart={() => { isDragging.current = true; }}
+        onEnd={() => { isDragging.current = false; }}
       />
     </>
   );

@@ -116,9 +116,7 @@ export default function TransmissionPage() {
         await navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-      } catch {
-        // clipboard unavailable (non-secure context or permissions denied)
-      }
+      } catch { /* clipboard unavailable */ }
     }
   };
 

@@ -136,58 +136,63 @@ function ConnectionLines({ nodes, simNodes, activeId }: {
   activeId: string | null;
 }) {
   const linesRef = useRef<THREE.Group>(null!);
+
   const posMap = useMemo(() => {
     const m = new Map<string, SimNode>();
     simNodes.forEach((s) => m.set(s.id, s));
     return m;
   }, [simNodes]);
 
-  // Pre-filter so rendered children index matches lineSegments index (no null gaps)
   const lineSegments = useMemo(() => {
     const segs: { from: string; to: string; color: string }[] = [];
     const seen = new Set<string>();
     nodes.forEach((n) => {
       n.connections.forEach((cid) => {
         const key = [n.id, cid].sort().join('--');
-        if (!seen.has(key) && posMap.has(n.id) && posMap.has(cid)) {
+        if (!seen.has(key)) {
           seen.add(key);
           segs.push({ from: n.id, to: cid, color: CATEGORY_COLORS[n.category] });
         }
       });
     });
     return segs;
-  }, [nodes, posMap]);
+  }, [nodes]);
 
-  // Keep a stable ref so useFrame can read the current value without re-registering
-  const segmentsRef = useRef(lineSegments);
-  segmentsRef.current = lineSegments;
+  // Pre-build geometries with Float32 position buffers so we can mutate them each frame
+  const geos = useMemo(() =>
+    lineSegments.map(() => {
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+      return geo;
+    }),
+  [lineSegments]);
+
+  const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
+  const activeConnectionsRef = useRef(new Set<string>());
 
   useFrame(() => {
+    const active = new Set(activeNode?.connections ?? []);
+    if (activeId) active.add(activeId);
+    activeConnectionsRef.current = active;
+
     if (!linesRef.current) return;
-
-    const activeNode = activeId ? nodes.find((n) => n.id === activeId) : null;
-    const activeConnections = new Set(activeNode?.connections ?? []);
-    if (activeId) activeConnections.add(activeId);
-
     linesRef.current.children.forEach((child, i) => {
-      const seg = segmentsRef.current[i];
-      if (!seg) return;
       const line = child as THREE.Line;
-      const { from, to } = seg;
+      const seg = lineSegments[i];
+      if (!seg) return;
 
-      // Update geometry endpoints to track live node positions
-      const a = posMap.get(from);
-      const b = posMap.get(to);
+      // Update vertex positions to track moving nodes
+      const a = posMap.get(seg.from);
+      const b = posMap.get(seg.to);
       if (a && b) {
-        const posAttr = line.geometry.attributes.position;
-        const arr = posAttr.array as Float32Array;
-        arr[0] = a.pos.x; arr[1] = a.pos.y; arr[2] = a.pos.z;
-        arr[3] = b.pos.x; arr[4] = b.pos.y; arr[5] = b.pos.z;
-        posAttr.needsUpdate = true;
+        const buf = (line.geometry as THREE.BufferGeometry).attributes.position as THREE.BufferAttribute;
+        buf.setXYZ(0, a.pos.x, a.pos.y, a.pos.z);
+        buf.setXYZ(1, b.pos.x, b.pos.y, b.pos.z);
+        buf.needsUpdate = true;
       }
 
       // Update opacity based on active selection
-      const isActive = !activeId || activeConnections.has(from) || activeConnections.has(to);
+      const isActive = !activeId || active.has(seg.from) || active.has(seg.to);
       const mat = line.material as THREE.LineBasicMaterial;
       mat.opacity = isActive ? (activeId ? 0.35 : 0.12) : 0.03;
     });
@@ -195,19 +200,12 @@ function ConnectionLines({ nodes, simNodes, activeId }: {
 
   return (
     <group ref={linesRef}>
-      {lineSegments.map(({ from, to, color }) => {
-        const a = posMap.get(from);
-        const b = posMap.get(to);
-        if (!a || !b) return null;
-        const pts = [a.pos.clone(), b.pos.clone()];
-        const geo = new THREE.BufferGeometry().setFromPoints(pts);
-        return (
-          <line key={`${from}-${to}`}>
-            <primitive object={geo} attach="geometry" />
-            <lineBasicMaterial color={color} transparent opacity={0.12} />
-          </line>
-        );
-      })}
+      {lineSegments.map(({ color }, i) => (
+        <line key={i}>
+          <primitive object={geos[i]} attach="geometry" />
+          <lineBasicMaterial color={color} transparent opacity={0.12} />
+        </line>
+      ))}
     </group>
   );
 }
