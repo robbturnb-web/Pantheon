@@ -1,0 +1,292 @@
+[
+  {
+    "id": "code-of-hammurabi",
+    "period": "Ancient",
+    "start_year": -1754,
+    "end_year": -1754,
+    "region": "Mesopotamia",
+    "title": "Code of Hammurabi",
+    "summary": "One of the earliest recorded law codes, setting precedents for written governance.",
+    "tags": ["law", "governance"]
+  },
+  {
+    "id": "athenian-democracy-reforms",
+    "period": "Classical",
+    "start_year": -508,
+    "end_year": -508,
+    "region": "Greece",
+    "title": "Athenian democratic reforms",
+    "summary": "Cleisthenes expands citizen assemblies and lays foundations for participatory governance.",
+    "tags": ["governance", "civic"]
+  },
+  {
+    "id": "qin-unification",
+    "period": "Classical",
+    "start_year": -221,
+    "end_year": -206,
+    "region": "China",
+    "title": "Qin unification of China",
+    "summary": "Qin Shi Huang centralizes power, standardizes script and measures, and builds early Great Wall sections.",
+    "tags": ["state-building", "infrastructure"]
+  },
+  {
+    "id": "edict-of-milan",
+    "period": "Late Antiquity",
+    "start_year": 313,
+    "end_year": 313,
+    "region": "Roman Empire",
+    "title": "Edict of Milan",
+    "summary": "Imperial decree legalizes Christianity and sets precedent for religious toleration policies.",
+    "tags": ["religion", "policy"]
+  },
+  {
+    "id": "fall-of-western-rome",
+    "period": "Late Antiquity",
+    "start_year": 476,
+    "end_year": 476,
+    "region": "Europe",
+    "title": "Fall of the Western Roman Empire",
+    "summary": "Deposition of Romulus Augustulus marks transition toward medieval polities in Western Europe.",
+    "tags": ["state-change", "conflict"]
+  },
+  {
+    "id": "magna-carta",
+    "period": "Medieval",
+    "start_year": 1215,
+    "end_year": 1215,
+    "region": "England",
+    "title": "Magna Carta",
+    "summary": "Charter compels the English crown to acknowledge limits on royal authority and uphold certain rights.",
+    "tags": ["law", "rights"]
+  },
+  {
+    "id": "black-death",
+    "period": "Medieval",
+    "start_year": 1347,
+    "end_year": 1351,
+    "region": "Europe",
+    "title": "Black Death pandemic",
+    "summary": "Bubonic plague kills tens of millions, reshaping economies, labor relations, and social orders.",
+    "tags": ["health", "demography"]
+  },
+  {
+    "id": "gutenberg-press",
+    "period": "Early Modern",
+    "start_year": 1440,
+    "end_year": 1455,
+    "region": "Europe",
+    "title": "Gutenberg printing press",
+    "summary": "Movable type accelerates book production, literacy, and the spread of ideas across Europe.",
+    "tags": ["technology", "communication"]
+  },
+  {
+    "id": "columbian-exchange",
+    "period": "Early Modern",
+    "start_year": 1492,
+    "end_year": 1600,
+    "region": "Transatlantic",
+    "title": "Columbian Exchange",
+    "summary": "Sustained contact between the Americas and Afro-Eurasia transfers crops, diseases, people, and ideas.",
+    "tags": ["trade", "migration", "health"]
+  },
+  {
+    "id": "protestant-reformation",
+    "period": "Early Modern",
+    "start_year": 1517,
+    "end_year": 1648,
+    "region": "Europe",
+    "title": "Protestant Reformation",
+    "summary": "Reform movements challenge Catholic authority, triggering religious wars and new confessional states.",
+    "tags": ["religion", "conflict"]
+  },
+  {
+    "id": "scientific-revolution",
+    "period": "Early Modern",
+    "start_year": 1543,
+    "end_year": 1700,
+    "region": "Europe",
+    "title": "Scientific Revolution",
+    "summary": "Empirical methods and publication norms emerge, anchored by works like Newton's Principia.",
+    "tags": ["science", "methodology"]
+  },
+  {
+    "id": "american-revolution",
+    "period": "Early Modern",
+    "start_year": 1775,
+    "end_year": 1783,
+    "region": "North America",
+    "title": "American Revolution",
+    "summary": "Thirteen colonies declare independence, testing Enlightenment ideals in governance and rights.",
+    "tags": ["conflict", "independence"]
+  },
+  {
+    "id": "french-revolution",
+    "period": "Early Modern",
+    "start_year": 1789,
+    "end_year": 1799,
+    "region": "Europe",
+    "title": "French Revolution",
+    "summary": "Monarchy falls, declarations of rights spread, and Europe enters decades of ideological conflict.",
+    "tags": ["revolution", "rights"]
+  },
+  {
+    "id": "industrial-revolution",
+    "period": "Modern",
+    "start_year": 1760,
+    "end_year": 1840,
+    "region": "Europe",
+    "title": "Industrial Revolution",
+    "summary": "Mechanization, coal power, and factory labor transform productivity and urban life.",
+    "tags": ["technology", "economy"]
+  },
+  {
+    "id": "world-war-1",
+    "period": "Modern",
+    "start_year": 1914,
+    "end_year": 1918,
+    "region": "Global",
+    "title": "World War I",
+    "summary": "Industrialized warfare redraws borders and strains empires, prompting new international bodies.",
+    "tags": ["conflict", "geopolitics"]
+  },
+  {
+    "id": "world-war-2",
+    "period": "Modern",
+    "start_year": 1939,
+    "end_year": 1945,
+    "region": "Global",
+    "title": "World War II",
+    "summary": "Global conflict ends with Axis defeat, genocide trials, nuclear weapons, and superpower rivalry.",
+    "tags": ["conflict", "genocide", "technology"]
+  },
+  {
+    "id": "united-nations-founded",
+    "period": "Modern",
+    "start_year": 1945,
+    "end_year": 1948,
+    "region": "Global",
+    "title": "United Nations and Universal Declaration of Human Rights",
+    "summary": "Postwar institutions form to reduce conflict and codify shared human rights standards.",
+    "tags": ["diplomacy", "rights"]
+  },
+  {
+    "id": "decolonization-wave",
+    "period": "Modern",
+    "start_year": 1945,
+    "end_year": 1975,
+    "region": "Africa, Asia, Caribbean",
+    "title": "Global decolonization",
+    "summary": "Dozens of colonies gain independence, reshaping global governance and economic alignments.",
+    "tags": ["independence", "governance"]
+  },
+  {
+    "id": "space-race-moon-landing",
+    "period": "Contemporary",
+    "start_year": 1957,
+    "end_year": 1969,
+    "region": "Global",
+    "title": "Space Race and Moon landing",
+    "summary": "Cold War competition drives satellite technology and culminates in the Apollo 11 landing.",
+    "tags": ["technology", "science"]
+  },
+  {
+    "id": "civil-rights-movement-us",
+    "period": "Contemporary",
+    "start_year": 1954,
+    "end_year": 1968,
+    "region": "United States",
+    "title": "U.S. Civil Rights Movement",
+    "summary": "Grassroots organizing and landmark laws dismantle formal segregation and expand voting rights.",
+    "tags": ["rights", "social-movements"]
+  },
+  {
+    "id": "pentagon-papers",
+    "period": "Contemporary",
+    "start_year": 1971,
+    "end_year": 1971,
+    "region": "United States",
+    "title": "Publication of the Pentagon Papers",
+    "summary": "Leaked study reveals U.S. decision-making in Vietnam War, fueling transparency debates.",
+    "tags": ["disclosure", "governance"]
+  },
+  {
+    "id": "watergate-investigations",
+    "period": "Contemporary",
+    "start_year": 1972,
+    "end_year": 1974,
+    "region": "United States",
+    "title": "Watergate investigations",
+    "summary": "Reporting and congressional inquiries expose executive misconduct, leading to presidential resignation.",
+    "tags": ["disclosure", "governance"]
+  },
+  {
+    "id": "berlin-wall-falls",
+    "period": "Contemporary",
+    "start_year": 1989,
+    "end_year": 1989,
+    "region": "Europe",
+    "title": "Fall of the Berlin Wall",
+    "summary": "Peaceful protests and policy shifts open the border, accelerating the end of the Cold War division.",
+    "tags": ["geopolitics", "social-movements"]
+  },
+  {
+    "id": "world-wide-web",
+    "period": "Contemporary",
+    "start_year": 1991,
+    "end_year": 1993,
+    "region": "Global",
+    "title": "World Wide Web becomes public",
+    "summary": "Tim Berners-Lee opens web standards, enabling rapid global information sharing.",
+    "tags": ["technology", "communication"]
+  },
+  {
+    "id": "truth-and-reconciliation-sa",
+    "period": "Contemporary",
+    "start_year": 1996,
+    "end_year": 1998,
+    "region": "South Africa",
+    "title": "Truth and Reconciliation Commission",
+    "summary": "Public hearings document apartheid-era abuses and create a model for transitional justice.",
+    "tags": ["disclosure", "justice"]
+  },
+  {
+    "id": "wikileaks-cablegate",
+    "period": "Contemporary",
+    "start_year": 2010,
+    "end_year": 2010,
+    "region": "Global",
+    "title": "WikiLeaks diplomatic cables",
+    "summary": "Release of U.S. diplomatic cables exposes candid assessments and fuels debates on transparency.",
+    "tags": ["disclosure", "diplomacy"]
+  },
+  {
+    "id": "arab-spring",
+    "period": "Contemporary",
+    "start_year": 2010,
+    "end_year": 2012,
+    "region": "Middle East and North Africa",
+    "title": "Arab Spring uprisings",
+    "summary": "Protests and political upheavals challenge entrenched governments with varied outcomes.",
+    "tags": ["social-movements", "governance"]
+  },
+  {
+    "id": "snowden-disclosures",
+    "period": "Contemporary",
+    "start_year": 2013,
+    "end_year": 2013,
+    "region": "Global",
+    "title": "Snowden surveillance disclosures",
+    "summary": "Leaks about mass surveillance spark legal reforms, corporate encryption shifts, and privacy debates.",
+    "tags": ["disclosure", "technology", "privacy"]
+  },
+  {
+    "id": "covid-19-pandemic",
+    "period": "Contemporary",
+    "start_year": 2019,
+    "end_year": 2022,
+    "region": "Global",
+    "title": "COVID-19 pandemic",
+    "summary": "Global outbreak triggers public health mobilization, economic disruption, and rapid vaccine development.",
+    "tags": ["health", "economy", "science"]
+  }
+]
