@@ -1,2 +1,2 @@
 # Pantheon
-Knowledge platform
+Knowledge platform for ancient-to-current world events and disclosures.
