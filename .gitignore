@@ -51,3 +51,16 @@
 # Embedded web-server pid file
 /.web-server-pid
 .env
+
+# Node modules
+node_modules/
+
+# Temporary files
+/tmp/
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

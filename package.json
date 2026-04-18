@@ -1,0 +1,33 @@
+{
+  "name": "pantheon",
+  "version": "1.0.0",
+  "description": "Knowledge Platform: Ancient to Current World Events and Disclosures",
+  "main": "app.js",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbturnb-web/Pantheon.git"
+  },
+  "keywords": [
+    "knowledge",
+    "history",
+    "events",
+    "timeline",
+    "disclosures",
+    "ancient",
+    "modern",
+    "education"
+  ],
+  "author": "Pantheon Contributors",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/robbturnb-web/Pantheon/issues"
+  },
+  "homepage": "https://github.com/robbturnb-web/Pantheon#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

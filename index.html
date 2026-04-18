@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantheon - Knowledge Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏛️ Pantheon</h1>
+            <p class="tagline">Ancient to Current World Events and Disclosures</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="nav-btn active" data-filter="all">All Events</button>
+            <button class="nav-btn" data-filter="ancient">Ancient</button>
+            <button class="nav-btn" data-filter="modern">Modern</button>
+            <button class="nav-btn" data-filter="disclosure">Disclosures</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Search events, disclosures, and historical records...">
+        </section>
+
+        <section class="timeline-section">
+            <h2>Timeline</h2>
+            <div id="timeline" class="timeline">
+                <!-- Events will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3 id="totalEvents">0</h3>
+                <p>Total Events</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="ancientEvents">0</h3>
+                <p>Ancient Events</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="modernEvents">0</h3>
+                <p>Modern Events</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="disclosures">0</h3>
+                <p>Disclosures</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Pantheon Knowledge Platform. Licensed under CC0 1.0 Universal.</p>
+            <p>A platform dedicated to preserving and sharing knowledge across time.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
