@@ -8,6 +8,9 @@
     },
     "pantheon": {
       "enabled": true
+    },
+    "github": {
+      "enabled": true
     }
   }
 }
