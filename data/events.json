@@ -110,6 +110,16 @@
     "tags": ["science", "methodology"]
   },
   {
+    "id": "industrial-revolution",
+    "period": "Modern",
+    "start_year": 1760,
+    "end_year": 1840,
+    "region": "Europe",
+    "title": "Industrial Revolution",
+    "summary": "Mechanization, coal power, and factory labor transform productivity and urban life.",
+    "tags": ["technology", "economy"]
+  },
+  {
     "id": "american-revolution",
     "period": "Early Modern",
     "start_year": 1775,
@@ -128,16 +138,6 @@
     "title": "French Revolution",
     "summary": "Monarchy falls, declarations of rights spread, and Europe enters decades of ideological conflict.",
     "tags": ["revolution", "rights"]
-  },
-  {
-    "id": "industrial-revolution",
-    "period": "Modern",
-    "start_year": 1760,
-    "end_year": 1840,
-    "region": "Europe",
-    "title": "Industrial Revolution",
-    "summary": "Mechanization, coal power, and factory labor transform productivity and urban life.",
-    "tags": ["technology", "economy"]
   },
   {
     "id": "world-war-1",
@@ -180,16 +180,6 @@
     "tags": ["independence", "governance"]
   },
   {
-    "id": "space-race-moon-landing",
-    "period": "Contemporary",
-    "start_year": 1957,
-    "end_year": 1969,
-    "region": "Global",
-    "title": "Space Race and Moon landing",
-    "summary": "Cold War competition drives satellite technology and culminates in the Apollo 11 landing.",
-    "tags": ["technology", "science"]
-  },
-  {
     "id": "civil-rights-movement-us",
     "period": "Contemporary",
     "start_year": 1954,
@@ -198,6 +188,16 @@
     "title": "U.S. Civil Rights Movement",
     "summary": "Grassroots organizing and landmark laws dismantle formal segregation and expand voting rights.",
     "tags": ["rights", "social-movements"]
+  },
+  {
+    "id": "space-race-moon-landing",
+    "period": "Contemporary",
+    "start_year": 1957,
+    "end_year": 1969,
+    "region": "Global",
+    "title": "Space Race and Moon landing",
+    "summary": "Cold War competition drives satellite technology and culminates in the Apollo 11 landing.",
+    "tags": ["technology", "science"]
   },
   {
     "id": "pentagon-papers",
