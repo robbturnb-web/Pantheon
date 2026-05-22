@@ -7,7 +7,7 @@
       "enabled": true
     },
     "pantheon": {
-      "enabled": true
+      "enabled": false
     },
     "github": {
       "enabled": true
